@@ -1,0 +1,199 @@
+# =============================================================================
+# config.yml — Parámetros del proyecto Integración ICFES Saber 11 -> Saber Pro
+# Cambiar SOLO este archivo para incorporar un año nuevo o mover rutas.
+# NUNCA escribir años/periodos directamente dentro de los scripts .R
+# =============================================================================
+
+rutas:
+  raw_saber11:            "data/raw/Saber11"
+  raw_saberpro:            "data/raw/SaberPro"
+  raw_cruces:               "data/raw/Cruces"
+  interim:                  "data/interim"        # checkpoints parquet por periodo
+  output:                   "data/output"          # base final .csv + diccionario de salida
+  logs:                     "logs"
+  diccionario_xlsx:         "docs/diccionario_variables.xlsx"
+  homologacion_categorias:  "config/homologacion_categorias.csv"
+  homologacion_geografia:   "config/homologacion_geografia_dane.csv"
+
+# Periodos a procesar. Para incorporar un año nuevo (ej. SaberPro 2025 o
+# Saber11 2026), agregarlo aquí y volver a ejecutar run_all.R — no tocar
+# nada más.
+periodos:
+  saber11:
+    - "20141"
+    - "20142"
+    - "20151"
+    - "20152"
+    - "20161"
+    - "20162"
+    - "20171"
+    - "20172"
+    - "20181"
+    - "20182"
+    - "20191"
+    - "20192"
+    - "20201"
+    - "20202"
+    - "20211"
+    - "20212"
+    - "20221"
+    - "20222"
+    - "20231"
+    - "20232"
+    - "20241"
+    - "20242"
+    - "20251"
+    - "20252"
+  saberpro:
+    - "2014"
+    - "2015"
+    - "2016"
+    - "2017"
+    - "2018"
+    - "2019"
+    - "2020"
+    - "2021"
+    - "2022"
+    - "2023"
+    - "2024"
+
+# Convención de nombres de archivo esperada. {periodo} se reemplaza por cada
+# valor de la lista de arriba.
+patrones_archivo:
+  saber11:  "Examen_Saber_11_{periodo}*.{ext}"
+  saberpro: "Examen_Saber_Pro_Genericas_{periodo}*.{ext}"
+  extensiones_validas: ["csv", "txt", "CSV", "TXT"]
+
+# El archivo de cruces NO sigue un patrón por periodo -- es un único archivo
+# histórico. Nombre real confirmado: "Cruce Examen Saber 11 - Examen Saber Pro".
+# run_all.R lo busca directamente dentro de data/raw/Cruces/ (cualquier .csv/.txt
+# que haya ahí), así que no hace falta declarar aquí su nombre exacto -- solo
+# asegúrate de que sea el único archivo .csv/.txt en esa carpeta.
+
+lectura:
+  separador: ";"
+  encodings_a_probar: ["UTF-8", "Latin1", "WINDOWS-1252"]
+  na_strings: ["", "NA", "N/A", "-", "*", "NULL", "sin dato", "Sin dato"]
+
+# Llaves usadas en la tabla puente /data/raw/Cruces/. "Cruce Examen Saber 11 -
+# Examen Saber Pro" (columnas: estu_consecutivo_sb11, periodo_sb11,
+# estu_consecutivo_sbpro, periodo_sbpro).
+cruce:
+  llave_saber11_en_tabla_cruce:  "estu_consecutivo_sb11"
+  llave_saberpro_en_tabla_cruce: "estu_consecutivo_sbpro"
+  llave_saber11_en_datos:        "estu_consecutivo"
+  llave_saberpro_en_datos:       "estu_consecutivo"
+  # Regla para resolver presentaciones múltiples de la misma prueba, POR
+  # PRUEBA : si un estudiante presentó
+  # Saber 11 más de una vez, se toma la PRIMERA; si presentó Saber Pro más de
+  # una vez, se toma la ÚLTIMA. Opciones soportadas por 06_cruce.R: "primera" | "ultima"
+  regla_presentaciones_multiples:
+    saber11: "primera"
+    saberpro: "ultima"
+  # Rango plausible de rezago (en MESES) entre Saber 11 y Saber Pro.
+  # Fuera de este rango, el registro se marca como 'rezago_implausible'
+  # 12 meses (~2 semestres) a 144 meses (12 años) es un punto de partida;
+  rezago_meses_min: 12
+  rezago_meses_max: 144
+
+# las 5 columnas recaf_punt_* del periodo 2014-1 se
+# renombran directamente a su equivalente estándar (punt_c_naturales,
+# punt_sociales_ciudadanas, punt_lectura_critica, punt_matematicas,
+# punt_ingles) ANTES de la selección defensiva -- ver RECAF_A_ESTANDAR en
+# R/03_limpieza_saber11.R. No quedan como columnas separadas en la base
+# final; el valor recalificado cae directo en la misma columna que usan
+# todos los demás periodos.
+
+semilla_aleatoria: 20260824
+
+# Rangos teóricos de puntaje para la validación (Fase 5). Según el diccionario
+# de variables: los puntajes de asignatura individual (esquema antiguo,
+# Saber11 2014-1 a ~2019-1) van de 0 a 100; el puntaje global de Saber 11 de
+# 0 a 500 (verificar, cambia de escala en la serie); los módulos y el
+# puntaje global de Saber Pro de 0 a 300.
+#
+# LIMITACIÓN CONOCIDA: son rangos ÚNICOS aplicados a los 12 años completos.
+#   Una variable puede tener varios segmentos si la escala cambió más de una
+#   vez dentro de la ventana -- solo hay que agregar otra entrada a la lista.
+rangos_puntajes:
+  punt_c_naturales:
+    - {prueba: saber11, periodo_desde: 2014.1, periodo_hasta: 2025.2, min: 0, max: 100}
+  punt_sociales_ciudadanas:
+    - {prueba: saber11, periodo_desde: 2014.1, periodo_hasta: 2025.2, min: 0, max: 100}
+  punt_lectura_critica:
+    - {prueba: saber11, periodo_desde: 2014.1, periodo_hasta: 2025.2, min: 0, max: 100}
+  punt_matematicas:
+    - {prueba: saber11, periodo_desde: 2014.1, periodo_hasta: 2025.2, min: 0, max: 100}
+  punt_ingles:
+    - {prueba: saber11, periodo_desde: 2014.1, periodo_hasta: 2025.2, min: 0, max: 100}
+  punt_global_s11:
+    - {prueba: saber11, periodo_desde: 2014.1, periodo_hasta: 2025.2, min: 0, max: 500}
+  punt_global_spro:
+    - {prueba: saberpro, periodo_desde: 2014, periodo_hasta: 2024, min: 0, max: 300}
+  mod_competen_ciudada_punt:
+    - {prueba: saberpro, periodo_desde: 2014, periodo_hasta: 2024, min: 0, max: 300}
+  mod_comuni_escrita_punt:
+    - {prueba: saberpro, periodo_desde: 2014, periodo_hasta: 2024, min: 0, max: 300}
+  mod_ingles_punt:
+    - {prueba: saberpro, periodo_desde: 2014, periodo_hasta: 2024, min: 0, max: 300}
+  mod_razona_cuantitat_punt:
+    - {prueba: saberpro, periodo_desde: 2014, periodo_hasta: 2024, min: 0, max: 300}
+  mod_lectura_critica_punt:
+    - {prueba: saberpro, periodo_desde: 2014, periodo_hasta: 2024, min: 0, max: 300}
+
+
+orden_columnas_finales:
+  - estu_consecutivo_sb11
+  - estu_consecutivo_sbpro
+  - fami_estrato_num_s11
+  - fami_estrato_num_spro
+  - estu_inst_departamento
+  - cole_depto_ubicacion
+  - cole_mcpio_ubicacion
+  - estu_inst_municipio
+  - estu_genero_s11
+  - estu_genero_spro
+  - estu_etnia_spro
+  - estu_etnia_s11
+  - rezago_meses
+  - rezago_anios
+  - rezago_implausible
+  - punt_global_spro
+  - punt_global_s11
+  - mod_competen_ciudada_punt
+  - mod_comuni_escrita_punt
+  - mod_ingles_punt
+  - mod_razona_cuantitat_punt
+  - mod_lectura_critica_punt
+  - punt_c_naturales
+  - punt_lectura_critica
+  - punt_sociales_ciudadanas
+  - punt_ingles
+  - punt_matematicas
+  - inst_cod_institucion
+  - cole_codigo_icfes
+  - cole_area_ubicacion
+  - cole_jornada
+  - cole_naturaleza
+  - archivo_origen
+  - periodo_s11
+  - periodo_spro
+
+# Columnas que se eliminan explícitamente de la base final
+columnas_a_eliminar:
+  - fami_estratovivienda_s11
+  - fami_estratovivienda_spro
+  - prueba_s11
+  - prueba_spro
+  - periodo_valor_s11
+  - periodo_valor_spro
+
+# "Sesgo de selección: variables de perfil que se comparan entre estudiantes
+# vinculados a Saber Pro y no vinculados. Ver analisis/02_sesgo_seleccion.R.
+# Agregar o quitar una variable aquí no requiere tocar el script de R.
+analisis_sesgo_seleccion:
+  variables_perfil:
+    - fami_estrato_num
+    - estu_genero
+    - cole_naturaleza
+  nivel_confianza: 0.95

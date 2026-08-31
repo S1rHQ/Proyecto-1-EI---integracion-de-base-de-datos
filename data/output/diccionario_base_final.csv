@@ -1,0 +1,44 @@
+variable;tipo_r;tipo_diccionario;descripcion;categorias_valores;pct_faltantes;observaciones
+estu_consecutivo_sb11;character;;;;0;
+estu_consecutivo_sbpro;character;;;;0;
+fami_estrato_num_s11;numeric;;;;3.08;
+fami_estrato_num_spro;numeric;;;;3.43;
+estu_inst_departamento;character;Texto;Departamento de la universidad;Departamento de colombia;1.35;
+cole_depto_ubicacion;character;Texto;Departamento del colegio;Departamento de colombia;0;
+cole_mcpio_ubicacion;character;Texto;Municipio del colegio;Municipio de colombia;0;
+estu_inst_municipio;character;Texto;Municipio de la universidad;Municipio de colombia;1.35;
+estu_genero_s11;character;;;;0;
+estu_genero_spro;character;;;;0;
+estu_etnia_spro;character;;;;98.38;
+estu_etnia_s11;character;;;;81.69;
+rezago_meses;numeric;;;;0;
+rezago_anios;numeric;;;;0;
+rezago_implausible;logical;;;;0;
+punt_global_spro;numeric;;;;0.04;
+punt_global_s11;numeric;;;;8.47;
+mod_competen_ciudada_punt;numeric;Cuantitativa continua;Puntaje estandarizado obtenido en el módulo de Competencias Ciudadanas.;Intervalo (0 a 300 ptos);0;
+mod_comuni_escrita_punt;numeric;Cuantitativa continua;Puntaje estandarizado en el módulo de Comunicación Escrita;Intervalo (0 a 300 ptos);0.09;
+mod_ingles_punt;numeric;Cuantitativa continua;Puntaje estandarizado obtenido en el módulo de Inglés.;Intervalo (0 a 300 ptos);0.03;
+mod_razona_cuantitat_punt;numeric;Cuantitativa continua;Puntaje estandarizado obtenido en el módulo de Razonamiento Cuantitativo.;Intervalo (0 a 300 ptos);0;
+mod_lectura_critica_punt;numeric;Cuantitativa continua;Puntaje estandarizado obtenido en el módulo de Lectura Crítica.;Intervalo (0 a 300 ptos);0;
+punt_c_naturales;numeric;Cuantitativa continua;Mide el rendimiento específico en el area de Biología;"0-100 ;";0;"Registro de observación: Se detectó coexistencia de esquemas en la variable punt_* del archivo 2014-1 esta de sebe a la transición metodológica del ICFES, esta la estructura antigua basada en asignaturas individuales (punt_biologia, quimica, fisica, filosofia, ciencias_sociales, lenguaje, matematicas, ingles) y el nuevo modelo de 5 competencias (recaf_punt_lectura_critica, matematicas, c_naturales, sociales_ciudadanas, ingles). El prefijo recaf_ indica un proceso de recalificación donde se recalcularon los resultados del examen anterior mediante la nueva metodología para garantizar la comparabilidad intertemporal con periodos posteriores, teniendo esto en cuenta en el periodo 2014-1 las varibles de puntaje serás las siguientes: 
+- recaf_punt_c_naturales
+- recaf_punt_ingles
+- recaf_punt_lectura_critica
+- recaf_punt_matematicas
+- recaf_punt_sociales_ciudadanas
+
+"
+punt_lectura_critica;numeric;Cuantitativa continua;Evalúa la comprensión lectora y lógica crítica filosófica.;"0-100 ;";0;
+punt_sociales_ciudadanas;numeric;Cuantitativa continua;Mide el conocimiento y análisis en la prueba de Ciencias Sociales.;"0-100 ;";0;
+punt_ingles;numeric;Cuantitativa continua;Calificación numérica estandarizada en el idioma inglés.;"0-100 ;";0.1;
+punt_matematicas;numeric;Cuantitativa continua;Mide la competencia en la resolución de problemas y conceptos de Física.;"0-100 ;";0;
+inst_cod_institucion;numeric;Cuantitativa continua;Codigo numerico único asignado por el Ministerio de Educación Nacional (MEN) a través del SNIES (Sistema Nacional de Información de la Educación Superior).;Nominal;1.35;
+cole_codigo_icfes;numeric;Cuantitativa continua;Código numérico único asignado por el Ministerio de Educación Nacional (SNIES) para identificar el programa académico de educación superior;Nominal;0;
+cole_area_ubicacion;character;Texto;Zona del colegio;RURAL, URBANO;0;
+cole_jornada;character;Texto;Jornada escolar;MAÑANA, TARDE, NOCHE, COMPLETA, SABATINA;0.05;
+cole_naturaleza;character;Texto;Naturaleza legal de la institución;NO OFICIAL, OFICIAL;0;
+archivo_origen;character;;;;0;
+periodo_s11;character;;;;0;
+periodo_spro;character;;;;0;
+estu_areareside;character;Texto;Zona del estudiante;RURAL, URBANO;57.74;

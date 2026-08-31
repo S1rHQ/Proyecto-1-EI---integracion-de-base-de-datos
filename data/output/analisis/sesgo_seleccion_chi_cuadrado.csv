@@ -1,0 +1,4 @@
+variable;estadistico_chi2;grados_libertad;p_valor;conclusion;advertencia
+fami_estrato_num;194437.004787293;6;0;Asociación estadísticamente significativa (p < 0.05);""
+estu_genero;2369.39793163138;2;0;Asociación estadísticamente significativa (p < 0.05);""
+cole_naturaleza;171258.409080255;2;0;Asociación estadísticamente significativa (p < 0.05);""

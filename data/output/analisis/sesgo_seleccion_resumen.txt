@@ -1,0 +1,12 @@
+RESUMEN -- Sesgo de selección (Saber 11 -> Saber Pro)
+Generado: 2026-08-30 19:23:49.497561
+Universo analizado: 2448127 estudiantes de Saber 11 (excluidas las cohortes con censura por la derecha esperada)
+Vinculados a Saber Pro: 123459 (5%)
+
+Resultado de la prueba chi-cuadrado de independencia, por variable:
+  - fami_estrato_num: chi2 = 194437, gl = 6, p = <2e-16 -> Asociación estadísticamente significativa (p < 0.05)
+  - estu_genero: chi2 = 2369.4, gl = 2, p = <2e-16 -> Asociación estadísticamente significativa (p < 0.05)
+  - cole_naturaleza: chi2 = 171258.41, gl = 2, p = <2e-16 -> Asociación estadísticamente significativa (p < 0.05)
+
+Ver sesgo_seleccion_proporciones.csv para el detalle por categoría (con IC 95%)
+y graficos/ para el comparativo visual de cada variable.

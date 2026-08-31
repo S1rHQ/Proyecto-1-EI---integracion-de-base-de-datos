@@ -1,0 +1,14 @@
+variable;categoria;n_total;n_vinculados;proporcion_vinculada;ic_inferior;ic_superior
+fami_estrato_num;1;549878;13632;0.0248;0.0244;0.0252
+fami_estrato_num;2;681071;28407;0.0417;0.0412;0.0422
+fami_estrato_num;3;415028;31835;0.0767;0.0759;0.0775
+fami_estrato_num;4;116262;19099;0.1643;0.1622;0.1664
+fami_estrato_num;5;50718;14185;0.2797;0.2758;0.2836
+fami_estrato_num;6;35159;12499;0.3555;0.3505;0.3605
+fami_estrato_num;SIN DATO;600011;3802;0.0063;0.0061;0.0065
+estu_genero;F;1300916;73894;0.0568;0.0564;0.0572
+estu_genero;M;1146803;49565;0.0432;0.0428;0.0436
+estu_genero;SIN DATO;408;0;0;0;0.0116
+cole_naturaleza;NO OFICIAL;544261;84872;0.1559;0.155;0.1569
+cole_naturaleza;OFICIAL;1248997;38587;0.0309;0.0306;0.0312
+cole_naturaleza;SIN DATO;654869;0;0;0;0
